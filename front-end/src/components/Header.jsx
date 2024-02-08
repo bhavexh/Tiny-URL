@@ -10,9 +10,11 @@ const Header = () => {
     <div className="flex flex-row-reverse justify-between bg-sky-100 px-8 py-5 gap-3 ">
       <LogoutButton />
       {user ? (
-        <div className="text-lg font-normal">Welcome {user.username}</div>
+        <div className="text-lg font-normal">
+          Welcome to Tiny URL {user.username}
+        </div>
       ) : (
-        <h2></h2>
+        <div className="text-lg font-medium"> Tiny URL </div>
       )}
     </div>
   );

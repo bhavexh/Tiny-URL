@@ -11,7 +11,7 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={user ? <Home /> : <Navigate to="/auth" />} />
+        <Route path="/" element={<Home />} />
         <Route
           path="/auth"
           element={!user ? <AuthPage /> : <Navigate to="/" />}

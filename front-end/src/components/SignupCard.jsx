@@ -22,7 +22,6 @@ const SignupCard = () => {
         inputs
       );
       const data = response.data;
-      console.log(data);
       if (data.username) {
         setUser(data);
         alert("User created successfully");

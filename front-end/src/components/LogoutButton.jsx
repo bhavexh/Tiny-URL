@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import userAtom from "../atoms/userAtom";
 import authAtom from "../atoms/authAtom";
 import axios from "axios";
@@ -9,6 +10,7 @@ const LogoutButton = () => {
   const user = useRecoilValue(userAtom);
   const setUser = useSetRecoilState(userAtom);
   const setauthScreen = useSetRecoilState(authAtom);
+  const Navigate = useNavigate();
 
   const logoutHandler = async () => {
     try {
@@ -36,7 +38,14 @@ const LogoutButton = () => {
           Logout
         </button>
       ) : (
-        <button className="text-white bg-primary-600 hover:bg-primary-700 rounded-md py-1 px-3">
+        <button
+          className="text-white bg-primary-600 hover:bg-primary-700 rounded-md py-1 px-3"
+          onClick={() => {
+            console.log("Login button clicked");
+            setauthScreen("login");
+            Navigate("/auth");
+          }}
+        >
           Login
         </button>
       )}
