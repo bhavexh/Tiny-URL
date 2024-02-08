@@ -18,7 +18,7 @@ const SignupCard = () => {
   const signupHandler = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/user/signup",
+        "https://tinyy-url.onrender.com/api/user/signup",
         inputs
       );
       const data = response.data;

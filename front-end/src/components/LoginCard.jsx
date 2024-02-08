@@ -16,7 +16,7 @@ const LoginCard = () => {
   const loginHandler = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/user/login",
+        "https://tinyy-url.onrender.com/api/user/login",
         inputs
       );
       if (!response || !response.data) {

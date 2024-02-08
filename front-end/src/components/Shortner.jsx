@@ -32,7 +32,7 @@ const Shortner = () => {
         ...(user && user._id ? { user: user._id } : {}),
       };
       const response = await axios.post(
-        "http://localhost:3000/api/url/shorten",
+        "https://tinyy-url.onrender.com/api/url/shorten",
         payload
       );
       setShortenedURL(response.data.shortUrl);
