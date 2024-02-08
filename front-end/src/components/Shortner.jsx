@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useState, useRef } from "react";
 import axios from "axios";
+import { useRecoilValue } from "recoil";
+import userAtom from "../atoms/userAtom";
 
 const Shortner = () => {
   const [shortenedURL, setShortenedURL] = useState("");
@@ -8,6 +10,7 @@ const Shortner = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const outputInputRef = useRef(null);
+  const user = useRecoilValue(userAtom);
 
   useEffect(() => {
     let url = input;
@@ -24,11 +27,13 @@ const Shortner = () => {
 
   const shortenURL = async () => {
     try {
+      const payload = {
+        longUrl: longURL,
+        ...(user && user._id ? { user: user._id } : {}),
+      };
       const response = await axios.post(
         "http://localhost:3000/api/url/shorten",
-        {
-          longUrl: longURL,
-        }
+        payload
       );
       setShortenedURL(response.data.shortUrl);
     } catch (error) {

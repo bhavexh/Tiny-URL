@@ -3,7 +3,7 @@ import Url from "../models/urlModel.js";
 import checkURL from "../utils/helper/urlChecker.js";
 
 const urlShortner = async (req, res) => {
-  const { longUrl } = req.body;
+  const { longUrl, user } = req.body;
   console.log("longUrl: ", longUrl);
   if (!longUrl || checkURL(longUrl) === false) {
     return res.status(400).json("URL is required");
@@ -17,6 +17,7 @@ const urlShortner = async (req, res) => {
     const url = new Url({
       longUrl: longUrl,
       shortUrl: shortUrl,
+      user: user ? user : null,
     });
     await url.save();
     res.json({
