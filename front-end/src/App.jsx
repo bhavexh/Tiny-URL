@@ -1,17 +1,21 @@
-
-
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
+import AuthPage from "./pages/AuthPage";
 import Header from "./components/Header";
+import { useRecoilValue } from "recoil";
+import userAtom from "./atoms/userAtom";
 
 function App() {
+  const user = useRecoilValue(userAtom);
   return (
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={user ? <Home /> : <Navigate to="/auth" />} />
+        <Route
+          path="/auth"
+          element={!user ? <AuthPage /> : <Navigate to="/" />}
+        />
       </Routes>
     </>
   );
